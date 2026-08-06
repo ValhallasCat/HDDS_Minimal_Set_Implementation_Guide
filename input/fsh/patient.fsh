@@ -2,7 +2,7 @@
 // profile (which itself constrains base FHIR R4 Patient).
 
 Profile: SmartFOXPatient
-Parent: $AT-CORE-PATIENT
+Parent: Patient 
 Id: smartfox-patient
 Title: "SmartFOX Patient"
 Description: "Patient profile for the SmartFOX minimal data set. Adds a preferred-contact-method extension on top of the HL7 Austria AT Core Patient profile."
