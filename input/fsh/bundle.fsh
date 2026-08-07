@@ -1,5 +1,5 @@
 // The SmartFOX minimal set: exactly one SmartFOXPatient plus one or more
-// SmartFOXCondition resources, packaged together in a single Bundle.
+// MinimalCondition resources, packaged together in a single Bundle.
 
 Profile: SmartFOXMinimalSetBundle
 Parent: Bundle
@@ -12,8 +12,8 @@ Description: "The minimal FHIR data set for the SmartFOX use case: one Patient, 
 * entry ^slicing.rules = #open
 * entry contains
     patient 1..1 and
-    condition 1..* and
+    condition 0..* and
     consent 1..1
 * entry[patient].resource only SmartFOXPatient
-* entry[condition].resource only SmartFOXCondition
-* entry[consent].resource only SmartFOXConsent
+* entry[condition].resource only MinimalCondition
+* entry[consent].resource only HDDSConsent

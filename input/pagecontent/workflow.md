@@ -1,7 +1,7 @@
 The typical data donation workflow using this Implementation Guide looks like this:
 
 1. **Capture consent.** The patient's agreement to donate their data is recorded as a
-   [SmartFOXConsent](StructureDefinition-smartfox-consent.html) resource.
+   [HDDSConsent](StructureDefinition-HDDS-consent.html) resource.
 
 2. **CDA document transformation.** The CDA-based ELGA document is embedded in a FHIR
    Bundle and transferred to the [Safeguard](https://smartfox-project.github.io/Safeguard-API/index.html).

@@ -6,33 +6,24 @@ Parent: Patient
 Id: smartfox-patient
 Title: "SmartFOX Patient"
 Description: "Patient profile for the SmartFOX minimal data set. Adds a preferred-contact-method extension on top of the HL7 Austria AT Core Patient profile."
-* identifier MS
-* name MS
+* identifier 1..1 MS
+
 * birthDate 1..1 MS
-* gender MS
-* extension contains SmartFOXContactPreference named contactPreference 0..1 MS
-* extension[contactPreference] ^short = "How the patient prefers to be contacted"
+* birthDate obeys smartfox-birthdate-year-only
 
-// --- Custom information added for the SmartFOX use case ---
+* gender 1..1 MS
 
-Extension: SmartFOXContactPreference
-Id: smartfox-contact-preference
-Title: "Preferred Contact Method"
-Description: "The patient's preferred method of contact, used by the SmartFOX application to decide how to reach out."
-* value[x] only CodeableConcept
-* valueCodeableConcept from SmartFOXContactPreferenceVS (required)
+// The URL a patient wants to be contacted by (e.g. a video-call or messaging link)
+* telecom MS
+* telecom ^slicing.discriminator.type = #value
+* telecom ^slicing.discriminator.path = "system"
+* telecom ^slicing.rules = #open
+* telecom contains contactUrl 0..1 MS
+* telecom[contactUrl].system = #url
+* telecom[contactUrl].value 1..1 MS
 
-CodeSystem: SmartFOXContactPreferenceCS
-Id: smartfox-contact-preference-cs
-Title: "SmartFOX Contact Preference Codes"
-Description: "Codes for a patient's preferred contact method."
-* #phone "Phone"
-* #email "Email"
-* #letter "Letter"
-* #app "SmartFOX App"
+Invariant: smartfox-birthdate-year-only
+Description: "birthDate must be reduced to year precision for privacy, represented as 1 January of the birth year (YYYY-01-01)."
+Severity: #error
+Expression: "birthDate.matches('^[0-9]{4}-01-01$')"
 
-ValueSet: SmartFOXContactPreferenceVS
-Id: smartfox-contact-preference-vs
-Title: "SmartFOX Contact Preference Value Set"
-Description: "Value set of preferred contact methods for the SmartFOX use case."
-* codes from system SmartFOXContactPreferenceCS
