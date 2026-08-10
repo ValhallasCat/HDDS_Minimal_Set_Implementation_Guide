@@ -1,22 +1,23 @@
-Instance: SmartFOXPatientExample
-InstanceOf: SmartFOXPatient
+Instance: HDDSPatientExample
+InstanceOf: HDDSPatient
 Usage: #example
-Title: "SmartFOX Patient Example"
-* identifier.system = "http://example.org/fhir/identifier/patient-id"
-* identifier.value = "AT-Pat_SmartFOX-123"
+Title: "HDDS Patient Example"
+* name.id = "AT-Pat_SmartFOX-123"
 * gender = #female
 * birthDate = "1980-01-01"
 * telecom[contactUrl].system = #url
 * telecom[contactUrl].value = "https://smartfox.example.org/contact/maria-muster"
+* address.country = "AUT"
+* address.postalCode = "8010"
 
 Instance: MinimalConditionExample
 InstanceOf: MinimalCondition
 Usage: #example
-Title: "SmartFOX Condition Example"
+Title: "HDDS Condition Example"
 * clinicalStatus = $condition-clinical#active
 * verificationStatus = $condition-ver-status#confirmed
 * code = $icd10-bmg#G93.3 "Chronisches Müdigkeitssyndrom"
-* subject = Reference(SmartFOXPatientExample)
+* subject = Reference(HDDSPatientExample)
 * onsetDateTime = "2025-09-01"
 * recordedDate = "2026-03-01"
 
@@ -27,7 +28,7 @@ Usage: #example
 Title: "Consent Example"
 * status = #active
 * dateTime = "2026-03-15T15:25:00Z"
-* patient = Reference(SmartFOXPatientExample)
+* patient = Reference(HDDSPatientExample)
 * sourceAttachment.url = "https://doi.org/10.1038/s41597-024-03280-6"
 * sourceAttachment.title = "Jeanson, F., Gibson, S.J., Alper, P. et al. Getting your DUCs in a row - standardising the representation of Digital Use Conditions. Sci Data 11, 464 (2024)."
 * policyRule = http://terminology.hl7.org/CodeSystem/v3-ActCode#OPTINR
@@ -45,14 +46,30 @@ Title: "Consent Example"
 * provision.provision[purpose].purpose = http://terminology.hl7.org/CodeSystem/v3-ActReason#HRESCH "healthcare research"
 
 
-Instance: SmartFOXMinimalSetBundleExample
-InstanceOf: SmartFOXMinimalSetBundle
+Instance: HDDSMinimalSetBundleExample
+InstanceOf: HDDSMinimalSetBundle
 Usage: #example
-Title: "SmartFOX Minimal Set Bundle Example"
+Title: "HDDS Minimal Set Bundle Example"
 * type = #collection
-* entry[patient].fullUrl = "http://example.org/fhir/Patient/SmartFOXPatientExample"
-* entry[patient].resource = SmartFOXPatientExample
+* entry[patient].fullUrl = "http://example.org/fhir/Patient/HDDSPatientExample"
+* entry[patient].resource = HDDSPatientExample
 * entry[condition][0].fullUrl = "http://example.org/fhir/Condition/MinimalConditionExample"
 * entry[condition][0].resource = MinimalConditionExample
 * entry[consent].fullUrl = "http://example.org/fhir/Consent/HDDSConsentExample"
 * entry[consent].resource = HDDSConsentExample
+
+
+Instance: HDDSConsentExampleminimal
+InstanceOf: HDDSConsent
+Usage: #example
+Title: "Mininmal Consent Example"
+* status = #active
+* dateTime = "2025-04-20T13:15:00Z"
+* patient = Reference(HDDSPatientExample)
+* sourceAttachment.url = "https://doi.org/10.1038/s41597-024-03280-6"
+* sourceAttachment.title = "Jeanson, F., Gibson, S.J., Alper, P. et al. Getting your DUCs in a row - standardising the representation of Digital Use Conditions. Sci Data 11, 464 (2024)."
+* policyRule = http://terminology.hl7.org/CodeSystem/v3-ActCode#OPTINR
+* provision.type = #permit
+* provision.period.start = "2025-04-20"
+* provision.period.end = "2026-08-01"
+

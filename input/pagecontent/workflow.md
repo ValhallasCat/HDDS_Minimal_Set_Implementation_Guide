@@ -20,8 +20,8 @@ The typical data donation workflow using this Implementation Guide looks like th
 
 Because the Bundle profile constrains which resources are required for a valid data
 donation, a receiving system can validate an incoming Bundle against
-[SmartFOXMinimalSetBundle](StructureDefinition-smartfox-minimal-set-bundle.html) and
+[HDDSMinimalSetBundle](StructureDefinition-hdds-minimal-set-bundle.html) and
 reject it immediately if, for example, the consent is missing.
 
-See the [example Bundle](Bundle-SmartFOXMinimalSetBundleExample.html) for a complete
+See the [example Bundle](Bundle-HDDSMinimalSetBundleExample.html) for a complete
 instance of this workflow's output.

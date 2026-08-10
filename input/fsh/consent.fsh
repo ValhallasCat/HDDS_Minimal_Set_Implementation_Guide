@@ -5,7 +5,7 @@ Profile: HDDSConsent
 Parent: Consent
 Id: HDDS-consent
 Title: "HDDS Consent"
-Description: "Minimal Consent profile for the SmartFOX use case: records the patient's consent to share the accompanying Patient and Condition data."
+Description: "Minimal Consent profile for the HDDSuse case: records the patient's consent to share the accompanying Patient and Condition data."
 // Darf status nur active sein?
 * status 1..1 MS
 
@@ -13,12 +13,12 @@ Description: "Minimal Consent profile for the SmartFOX use case: records the pat
 * scope = http://terminology.hl7.org/CodeSystem/consentscope#research "Research"
 
 // The consent we want to display is a patient consent
-* category = http://loinc.org#59284-0 "Patient Consent"
+* category = http://loinc.org#59284-0 "Einwilligung - Dokument"
 
 
-// always linking to the Smart FOX Patient
+// always linking to the HDDSPatient
 * patient 1..1 MS
-* patient only Reference(SmartFOXPatient)
+* patient only Reference(HDDSPatient)
 
 
 
@@ -31,30 +31,50 @@ Description: "Minimal Consent profile for the SmartFOX use case: records the pat
 * policyRule = http://terminology.hl7.org/CodeSystem/v3-ActCode#OPTINR
 
 * provision 1..1 MS
-* provision.type = #deny
+* provision.type 1..1 MS
 * provision.period 1..1 MS
 
-* provision.provision ^slicing.discriminator.type = #value
-* provision.provision ^slicing.discriminator.path = "type"
+* provision.provision ^slicing.discriminator[+].type = #exists
+* provision.provision ^slicing.discriminator[=].path = "class"
+* provision.provision ^slicing.discriminator[+].type = #exists
+* provision.provision ^slicing.discriminator[=].path = "securityLabel"
+* provision.provision ^slicing.discriminator[+].type = #exists
+* provision.provision ^slicing.discriminator[=].path = "code"
+* provision.provision ^slicing.discriminator[+].type = #exists
+* provision.provision ^slicing.discriminator[=].path = "purpose"
 * provision.provision ^slicing.rules = #open
 * provision.provision contains
-    diagnosisExclusion 1..1 and
-    jurisdiction 1..1 and
-    profitMotive 1..1 and
-    purpose 1..1
+    diagnosisExclusion 0..1 and
+    jurisdiction 0..1 and
+    profitMotive 0..1 and
+    purpose 0..1
 
 * provision.provision[diagnosisExclusion].type 1..1 MS
 * provision.provision[diagnosisExclusion].class 1..* MS
-* provision.provision[diagnosisExclusion].class from $elga-problemkataloge (required)
+* provision.provision[diagnosisExclusion].class from $elga-problemkataloge (extensible)
 * provision.provision[diagnosisExclusion].code 1..* MS
+* provision.provision[diagnosisExclusion].code from $common-condition-use (required)
+* provision.provision[diagnosisExclusion].securityLabel 0..0
+* provision.provision[diagnosisExclusion].purpose 0..0
 
 * provision.provision[jurisdiction].type 1..1 MS
-* provision.provision[jurisdiction].securityLabel = urn:iso:std:iso:3166:1:alpha-2#EU "European Union"
+* provision.provision[jurisdiction].securityLabel 1..1 MS
+* provision.provision[jurisdiction].code 1..1 MS
 * provision.provision[jurisdiction].code = http://fhir.ehealth-systems.at/fhir/ValueSet/data-use-categories#regulatory-jurisdiction "Regulatory jurisdiction"
+* provision.provision[jurisdiction].class 0..0
+* provision.provision[jurisdiction].purpose 0..0
 
 * provision.provision[profitMotive].type 1..1 MS
+* provision.provision[profitMotive].code 1..1 MS
 * provision.provision[profitMotive].code = http://fhir.ehealth-systems.at/fhir/ValueSet/data-use-categories#PROFIT-MOTIVATED "Profit Motivated Use"
+* provision.provision[profitMotive].class 0..0
+* provision.provision[profitMotive].securityLabel 0..0
+* provision.provision[profitMotive].purpose 0..0
 
 * provision.provision[purpose].type 1..1 MS
+* provision.provision[purpose].purpose 1..1 MS
 * provision.provision[purpose].purpose = http://terminology.hl7.org/CodeSystem/v3-ActReason#HRESCH "healthcare research"
+* provision.provision[purpose].class 0..0
+* provision.provision[purpose].securityLabel 0..0
+* provision.provision[purpose].code 0..0
 

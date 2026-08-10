@@ -1,4 +1,5 @@
 
+The background behind teh health data donation space comes from the [Samrt FOX Project](https://www.smart-fox.at/), active until end of June 2026.
 The goal of Smart FOX is to increase the efficiency of clinical research through improved
 secondary use of health data. Austria holds a significant competitive advantage here,
 built on a decade of data harmonization efforts by Austria's national electronic health
