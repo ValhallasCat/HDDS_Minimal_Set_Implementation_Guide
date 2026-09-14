@@ -3,9 +3,9 @@
 # │  used properties are included. For a list of all supported properties and their functions,     │
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: smartfox.minimal-set
-canonical: http://example.org/fhir/smartfox-minimal-set
-name: SmartFOXMinimalSetIG
+id: hdds.minimal-set-implementation-guide
+canonical: http://example.org/fhir/hdds-minimal-set-implementation-guide
+name: HDDSMinimalSetImplementationGuide
 title: HDDS Minimal Set Implementation Guide
 description: >-
   Minimal FHIR R4 data set for the SmartFOX use case: a Patient and one or
