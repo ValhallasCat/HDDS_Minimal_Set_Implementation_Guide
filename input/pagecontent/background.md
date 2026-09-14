@@ -11,6 +11,6 @@ However, before such a data donation can take place, the corresponding infrastru
 must first be established through the Austrian Data Donation Space. As part of this,
 patients give their consent to donate data from their ELGA. These CDA-based data
 donations are then transformed through several steps, resulting in a pseudonymized FHIR
-Bundle that is sent to the FOX BOX. For this, a minimal FHIR Bundle must be defined,
+bundle that is sent to the FOX BOX. For this, a minimal FHIR Bundle must be defined,
 this is necessary because it specifies the minimum data that must be present for a data
 donation to be considered valid.
